@@ -66,7 +66,7 @@ class Chat:
               
 userMessage=["fever","headache","dizziness","nausea"]     
 chat=Chat(userMessage)
-chat.readFile(r"C:\Users\arafa\Desktop\test.txt")
+chat.readFile(r"assets/symptoms.txt")
 
 
 
