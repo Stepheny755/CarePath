@@ -16,7 +16,7 @@ def send_json():
 def post_json():
     jsdata=request.form['data']
     print(jsdata)
-    return jsonify(data)
+    #return jsonify(data)
 
 
 Flask.run(app,host="167.99.186.154")
