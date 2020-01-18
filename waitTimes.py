@@ -12,12 +12,9 @@ class waitTimes():
     def getWaitTimeTable(self):
         payload={'language':'en-CA'}
         table = requests.post(self.uri,payload);
-        #print(table)
-        #print((table.text))
         xmlDocument = minidom.parseString(table.text)
         itemList = xmlDocument.getElementsByTagName('string')
         dataList = itemList[0].firstChild.nodeValue
-        #print(json.loads(dataList)[0])
         for value in json.loads(dataList):
             print(value)
 
