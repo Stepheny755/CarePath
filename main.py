@@ -5,9 +5,11 @@ app = Flask('main')
 
 @app.route('/')
 def main():
-    return 'hello world'
+    temp = {'id':123456789,'name':'CarePath','value':'test'}
+    return json.dumps(temp)
+    #return 'hello world'
 
-@app.route('/postmethod')
+@app.route('/getmethod')
 def post_json():
     temp = {'id':123456789,'name':'CarePath','value':'test'}
     return json.dumps(temp)
