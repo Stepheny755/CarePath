@@ -1,5 +1,0 @@
-cold,nausea/cough/sneezing/fever/headache
-diarrhea,fever/nausea/bloating/cramps
-heartburn,chestpain/acid reflux/stress 
-sleep apnea,headache/fatigue/dizziness/sorethroat
-high blood pressure,headache/fatigue/chestpain/blood in urine/irregular heartbeat
