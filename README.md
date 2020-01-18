@@ -1,1 +1,2 @@
-# UofTHacks7
+# CarePath - A UofTHacks VII Project
+
