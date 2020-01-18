@@ -12,7 +12,7 @@ def send_json():
     temp = {'id':123456789,'name':'CarePath','value':'test'}
     return json.dumps(temp)
 
-@app.route('/postmethod')
+@app.route('/postmethod',methods=['POST'])
 def post_json():
     jsdata=request.form['data']
     print(jsdata)
