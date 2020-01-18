@@ -1,12 +1,8 @@
 import json,requests
 from flask import Flask,request
 
-#app = Flask('main')
+app = Flask('main')
 
-@app.route('/sendmethod')
+@app.route('/')
 def main():
-
-
-
-
-
+    return 'hello world'
