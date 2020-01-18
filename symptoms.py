@@ -24,9 +24,17 @@ class Chat:
         topBad.reverse()
         percents = []
         copyKeys=[]
-
-        for i in range(3):
-            percents.append(counter[topBad[i]]/lenSymp[topBad[i]]*100)
+         
+        print(lenSymp)
+        for i in range(numIssues):
+            percents.append(100*(((0.6)*counter[topBad[i]]/len(userMessage))+((0.4)*counter[topBad[i]]/lenSymp[topBad[i]])))
+            print(percents[i])
+            if percents[i]>=70:
+                percents[i]="likely"
+            elif percents[i]>=40:
+                percents[i]="moderately likely"s
+            else: 
+                percents[i]="unlikely"
         
         for x in healthIssues.keys():
             copyKeys.append(x);
@@ -38,8 +46,8 @@ class Chat:
         
             
                 
-        print(topIssues)
-        print(percents)
+        #print(topIssues)
+        #print(percents)
         
         
     
@@ -56,7 +64,7 @@ class Chat:
                 
         self.compare(healthIssues)
               
-userMessage=["sorethroat","headache","fatigue"]     
+userMessage=["fever","headache","dizziness","nausea"]     
 chat=Chat(userMessage)
 chat.readFile(r"C:\Users\arafa\Desktop\test.txt")
 
