@@ -69,7 +69,7 @@ class Main():
             self.api.sendMessage(id,"I understand that you are experiencing cough, fever, and nausea. Am I correct?")
         elif self.counter == 3:
             self.api.sendMessage(id,"Here are some possible matches: Flu = high Hepatitis A = moderate Measles = low Would you like help with anything else?")
-        elif self.counter == 5:
+        elif self.counter == 4:
             self.api.sendMessage(id,"Hello, what would you like help with?")
         elif self.counter == 6:
             self.api.sendMessage(id,"Sure. What medication(s) are you taking?")
@@ -79,7 +79,7 @@ class Main():
             self.api.sendMessage(id,"What time of day would you like a reminder text?")
         elif self.counter == 9:
             self.api.sendMessage(id,"Ok, your next reminder is set for today at 7:00pm. Would you like help with anything else?")
-        elif self.counter == 11:
+        elif self.counter == 10:
             self.api.sendMessage(id,"Hello, what would you like help with?")
         elif self.counter == 12:
             self.api.sendMessage(id,"Of course. What is your postal code?")
