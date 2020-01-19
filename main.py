@@ -35,11 +35,12 @@ class Main():
     def readAllMessages(self):
         for chat in self.data:
             id=chat[0]
-            for message in self.api.readMessage(id):
-                print(message['sender']['id']+": "+message['message'])
-                if chat[1]==State.READY:
+            mainControl()
+            #for message in self.api.readMessage(id):
+                #print(message['sender']['id']+": "+message['message'])
+                #if chat[1]==State.READY:
                     #self.api.sendMessage(id,self.api.writePromptString())
-                    mainControl()
+                    #mainControl()
                 '''if '1' in message['message']:
                     chat[1]=State.LOCA
                 elif '2' in message['message']:
@@ -52,7 +53,7 @@ class Main():
         counter+=1
 
     def mainControl(self):
-        id=self.api.findChatByMemberName("Stephen")
+        id=self.api.findChatByMemberName("Selena")
         if counter == 0:
             self.api.sendMessage(id,"Hello, I am Moose M.D, a friendly healthcare chatbot. Would you like me to \n(1) Search nearby healthcare services, \n(2) match your symptoms,\n(3) help regulate your medication?")
         elif counter == 1:
