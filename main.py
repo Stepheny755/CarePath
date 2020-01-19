@@ -24,6 +24,7 @@ class Main():
         self.api = API()
         self.data = []
         self.myID = self.api.findUserID()
+        self.counter=0
         for chat in self.api.parseChats():
             temp = []
             temp.append(chat['id'])
