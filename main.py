@@ -25,6 +25,7 @@ class Main():
         self.data = []
         self.myID = self.api.findUserID()
         self.counter=0
+        self.activeUser="Selena"
         for chat in self.api.parseChats():
             temp = []
             temp.append(chat['id'])
@@ -52,14 +53,14 @@ class Main():
 
 
     def incrementCounter(self):
-        id=self.api.findChatByMemberName("Stephen")
+        id=self.api.findChatByMemberName(self.activeUser)
         print(self.api.readMessage(id)[0]['sender']['id'])
         if(self.api.readMessage(id)[0]['sender']['id']!=self.myID):
             self.mainControl()
             self.counter+=1
 
     def mainControl(self):
-        id=self.api.findChatByMemberName("Selena")
+        id=self.api.findChatByMemberName(self.activeUser)
         print(self.counter)
         if self.counter == 0:
             self.api.sendMessage(id,"Hello, I am Moose M.D, a friendly healthcare chatbot. Would you like me to (1) Search nearby healthcare services, (2) match your symptoms, (3) help regulate your medication?")
