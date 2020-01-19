@@ -38,14 +38,15 @@ class Main():
             for message in self.api.readMessage(id):
                 print(message['sender']['id']+": "+message['message'])
                 if chat[1]==State.READY:
-                    self.api.sendMessage(id,self.api.writePromptString())
-                if '1' in message['message']:
+                    #self.api.sendMessage(id,self.api.writePromptString())
+                    mainControl()
+                '''if '1' in message['message']:
                     chat[1]=State.LOCA
                 elif '2' in message['message']:
                     chat[1]=State.SYMP
-                    self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
+                    #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
                 elif '3' in message['message']:
-                    chat[1]=State.ALRT
+                    chat[1]=State.ALRT'''
 
     def incrementCounter(self):
         counter+=1
@@ -78,28 +79,6 @@ class Main():
             self.api.sendMessage(id,"Here are the nearest healthcare centres and their availability: \nSt. Michaels Hospital: 30 mins wait time \nThe Hospital for Sick Children: 15 mins wait time \nThe Rehab and Wellbeing Centre at Mount Sinai Hospital: 25 mins wait time \nWould you like help with anything else?")
         else:
             counter += 1 #wait for user to send another message.
-
-
-
-
-
-        "Sure. What medication are you taking?"
-
-        "What days of the week do you nee dto take Insulin?"
-
-        "What time of the day would you like a reminder text?"
-
-        "Ok, your next reminder is set for today at 7:00 pm"
-
-
-
-        "What is your postal code?"
-
-        "Here are the nearest healthcare centers and their availability: "
-
-
-
-
 
 b = Main()
 
