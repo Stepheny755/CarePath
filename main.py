@@ -31,24 +31,23 @@ class Main():
             self.data.append(temp)
         print(self.data)
         self.readAllMessages()
-        self.mainControl()
 
     def readAllMessages(self):
         for chat in self.data:
             id=chat[0]
-            self.mainControl()
+            mainControl()
             #for message in self.api.readMessage(id):
                 #print(message['sender']['id']+": "+message['message'])
                 #if chat[1]==State.READY:
                     #self.api.sendMessage(id,self.api.writePromptString())
                     #mainControl()
-                #if '1' in message['message']:
-                    #chat[1]=State.LOCA
-                #elif '2' in message['message']:
-                    #chat[1]=State.SYMP
+'''if '1' in message['message']:
+                    chat[1]=State.LOCA
+                elif '2' in message['message']:
+                    chat[1]=State.SYMP
                     #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
-                #elif '3' in message['message']:
-                    #chat[1]=State.ALRT
+                elif '3' in message['message']:
+                    chat[1]=State.ALRT'''
 
     def incrementCounter(self):
         self.counter+=1
@@ -80,6 +79,8 @@ class Main():
             self.api.sendMessage(id,"Of course. What is your postal code?")
         elif self.counter == 13:
             self.api.sendMessage(id,"Here are the nearest healthcare centres and their availability: \nSt. Michaels Hospital: 30 mins wait time \nThe Hospital for Sick Children: 15 mins wait time \nThe Rehab and Wellbeing Centre at Mount Sinai Hospital: 25 mins wait time \nWould you like help with anything else?")
+        elif self.counter == 15:
+            self.counter == 0
         else:
             self.counter += 1 #wait for user to send another message.
 
