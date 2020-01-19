@@ -18,6 +18,7 @@ class Main():
     def __init__(self):
         self.api = API()
         self.data = []
+        self.myID = self.api.findUserID()
         for chat in self.api.parseChats():
             temp = []
             temp.append(chat['id'])

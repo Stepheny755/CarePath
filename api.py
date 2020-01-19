@@ -43,6 +43,13 @@ class API():
         chatList=self.getUserData()['data']['chatsForOrganization']['chats']
         return chatList
 
+    def findUserID(self):
+        payload = "{\"query\":\"query self {\\r\\n    me {\\r\\n        ...FullUserFields\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment FullUserFields on FullUser {\\r\\n    id\\r\\n    firstname\\r\\n    lastname\\r\\n    username\\r\\n    role\\r\\n    profilePic {\\r\\n        url\\r\\n    }\\r\\n    inviteCode\\r\\n}\",\"variables\":{}}"
+        headers = {'Authorization':self.authorization,'Content-Type': 'application/json'}
+        jsondata = requests.post(self.chaturi,headers=headers,data=payload)
+        return json.loads(jsondata.text)['data']['me']['id']
+
+
     def findChatByMemberID(self,receiverID):
         for chat in self.parseChats():
             if(chat['type']=='single'):
@@ -107,7 +114,7 @@ class API():
 
 if(__name__=="__main__"):
     a = API()
-    print(a.findNonContactedMembers())
+    print(a.findUserID())
     #print(a.parseChats()[0])
     #print()
     #print(a.readMessage(a.findChatByMemberName("Stephen")))
