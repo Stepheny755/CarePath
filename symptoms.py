@@ -9,8 +9,15 @@ class Chat:
         
         counter = [0 for i in range(len(healthIssues))]
         lenSymp = [0 for i in range(len(healthIssues))]
-        numIssues =3;
-        for x in userMessage:
+        numIssues = 3;
+        symptoms = userMessage.replace(" ", "").split(",")
+        #json symptoms to get approved
+        if approved == False:
+            #chat = Chat(json new input)
+            
+        
+        print(symptoms)
+        for x in symptoms:
             pos = 0
             for k,v in healthIssues.items():
                 lenSymp[pos] = len(v)
@@ -27,12 +34,12 @@ class Chat:
          
         print(lenSymp)
         for i in range(numIssues):
-            percents.append(100*(((0.6)*counter[topBad[i]]/len(userMessage))+((0.4)*counter[topBad[i]]/lenSymp[topBad[i]])))
+            percents.append(100*(((0.6)*counter[topBad[i]]/len(symptoms))+((0.4)*counter[topBad[i]]/lenSymp[topBad[i]])))
             print(percents[i])
             if percents[i]>=70:
                 percents[i]="likely"
             elif percents[i]>=40:
-                percents[i]="moderately likely"s
+                percents[i]="moderately likely"
             else: 
                 percents[i]="unlikely"
         
@@ -49,12 +56,12 @@ class Chat:
         for x in range(len(topIssues)):
          outputDisease += topIssues[x]+ " "
          outputPercents += percents[x]+ "\ns"
-        #print(topIssues)
-        #print(percents)
-   
+        print(topIssues)
+        print(percents)
+
+    def approve(self,approved): #takes json approval of list
+        return approved
         
-        
-    
     def readFile(self,fileName):
 
         healthIssues={}
@@ -68,10 +75,6 @@ class Chat:
                 
         self.compare(healthIssues)
               
-userMessage=["fever","headache","dizziness","nausea"]     
+userMessage = "fever, headache,dizziness, nausea"     
 chat=Chat(userMessage)
 chat.readFile(r"assets/symptoms.txt")
-
-
-
-
