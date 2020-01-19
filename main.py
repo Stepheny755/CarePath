@@ -54,8 +54,9 @@ class Main():
     def incrementCounter(self):
         id=self.api.findChatByMemberName("Stephen")
         print(self.api.readMessage(id)[0]['sender']['id'])
-        self.mainControl()
-        self.counter+=1
+        if(self.api.readMessage(id)[0]['sender']['id']!=self.myID):
+            self.mainControl()
+            self.counter+=1
 
     def mainControl(self):
         id=self.api.findChatByMemberName("Stephen")
