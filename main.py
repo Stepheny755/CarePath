@@ -51,20 +51,20 @@ class Main():
 #                    chat[1]=State.ALRT'''
 
     def incrementCounter(self):
-        self.counter+=1
         self.mainControl()
+        self.counter+=1
 
     def mainControl(self):
         id=self.api.findChatByMemberName("Stephen")
         if self.counter == 0:
             print(self.counter  )
-            self.api.sendMessage(id,"Hello, I am Moose M.D, a friendly healthcare chatbot. Would you like me to \n(1) Search nearby healthcare services, \n(2) match your symptoms,\n(3) help regulate your medication?")
+            self.api.sendMessage(id,"Hello, I am Moose M.D, a friendly healthcare chatbot. Would you like me to (1) Search nearby healthcare services, (2) match your symptoms, (3) help regulate your medication?")
         elif self.counter == 1:
             self.api.sendMessage(id,"Sure, I can help you with that. What are your symptoms?")
         elif self.counter == 2:
             self.api.sendMessage(id,"I understand that you are experiencing cough, fever, and nausea. Am I correct?")
         elif self.counter == 3:
-            self.api.sendMessage(id,"Here are some possible matches: \nFlu = high \nHepatitis A = moderate \nMeasles = low \nWould you like help with anything else?")
+            self.api.sendMessage(id,"Here are some possible matches: Flu = high Hepatitis A = moderate Measles = low Would you like help with anything else?")
         elif self.counter == 5:
             self.api.sendMessage(id,"Hello, what would you like help with?")
         elif self.counter == 6:
@@ -74,13 +74,13 @@ class Main():
         elif self.counter == 8:
             self.api.sendMessage(id,"What time of day would you like a reminder text?")
         elif self.counter == 9:
-            self.api.sendMessage(id,"Ok, your next reminder is set for today at 7:00pm. \nWould you like help with anything else?")
+            self.api.sendMessage(id,"Ok, your next reminder is set for today at 7:00pm. Would you like help with anything else?")
         elif self.counter == 11:
             self.api.sendMessage(id,"Hello, what would you like help with?")
         elif self.counter == 12:
             self.api.sendMessage(id,"Of course. What is your postal code?")
         elif self.counter == 13:
-            self.api.sendMessage(id,"Here are the nearest healthcare centres and their availability: \nSt. Michaels Hospital: 30 mins wait time \nThe Hospital for Sick Children: 15 mins wait time \nThe Rehab and Wellbeing Centre at Mount Sinai Hospital: 25 mins wait time \nWould you like help with anything else?")
+            self.api.sendMessage(id,"Here are the nearest healthcare centres and their availability: St. Michaels Hospital: 30 mins wait time The Hospital for Sick Children: 15 mins wait time The Rehab and Wellbeing Centre at Mount Sinai Hospital: 25 mins wait time Would you like help with anything else?")
         elif self.counter == 15:
             self.counter == 0
         else:
