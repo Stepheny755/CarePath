@@ -28,6 +28,7 @@ class Main():
         self.readAllMessages()
 
     def refresh(self):
+        print("Refreshing")
         self.readAllMessages()
 
     def readAllMessages(self):
