@@ -44,10 +44,14 @@ class Chat:
         for x in range(numIssues):
             topIssues.append(copyKeys[topBad[x]])
         
-            
-                
+        outputDisease = "Possible matches to your symptoms are: "
+        outputPercents = "(sickness = likelihood): \n"
+        for x in range(len(topIssues)):
+         outputDisease += topIssues[x]+ " "
+         outputPercents += percents[x]+ "\ns"
         #print(topIssues)
         #print(percents)
+   
         
         
     
