@@ -53,8 +53,9 @@ class Main():
 
     def incrementCounter(self):
         print("hit")
-        self.mainControl()
-        self.counter+=1
+        if(self.api.readMessage(id)[0]['sender']['firstname']!='moose'):
+            self.mainControl()
+            self.counter+=1
 
     def mainControl(self):
         id=self.api.findChatByMemberName("Stephen")
