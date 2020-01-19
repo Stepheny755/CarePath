@@ -33,17 +33,17 @@ class Main():
     def readAllMessages(self):
         for chat in self.data:
             id=chat[0]
-                for message in self.api.readMessage(id):
-                    print(message['sender']['id']+": "+message['message'])
-                    if chat[1]=State.READY:
-                        self.api.sendMessage(id,self.api.writePromptString())
-                    if '1' in message['message']:
-                        chat[1]=State.LOCA
-                    elif '2' in message['message']:
-                        chat[1]=State.SYMP
-                        #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
-                    elif '3' in message['message']:
-                        chat[1]=State.ALRT
+            for message in self.api.readMessage(id):
+                print(message['sender']['id']+": "+message['message'])
+                if chat[1]=State.READY:
+                    self.api.sendMessage(id,self.api.writePromptString())
+                if '1' in message['message']:
+                    chat[1]=State.LOCA
+                elif '2' in message['message']:
+                    chat[1]=State.SYMP
+                    #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
+                elif '3' in message['message']:
+                    chat[1]=State.ALRT
 
     #def parseSymp():
 
