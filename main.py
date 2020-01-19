@@ -37,7 +37,6 @@ class Main():
                     print(message['sender']['id']+": "+message['message'])
                     if chat[1]=State.READY:
                         self.api.sendMessage(id,self.api.writePromptString())
-
                     if '1' in message['message']:
                         chat[1]=State.LOCA
                     elif '2' in message['message']:
@@ -46,13 +45,13 @@ class Main():
                     elif '3' in message['message']:
                         chat[1]=State.ALRT
 
-    def parseSymp():
+    #def parseSymp():
 
 
-    def parseLoca():
+    #def parseLoca():
 
 
-    def parseAlrt():
+    #def parseAlrt():
 
 b = Main()
 
