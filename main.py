@@ -38,7 +38,7 @@ class Main():
                     chat[1]=State.LOCA
                 elif '2' in message['message']:
                     chat[1]=State.SYMP
-                    #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
+                    self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
                 elif '3' in message['message']:
                     chat[1]=State.ALRT
 
