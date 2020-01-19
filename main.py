@@ -72,21 +72,21 @@ class Main():
             self.api.sendMessage(id,"Here are some possible matches: Flu = high Hepatitis A = moderate Measles = low Would you like help with anything else?")
         elif self.counter == 4:
             self.api.sendMessage(id,"Hello, what would you like help with?")
-        elif self.counter == 6:
+        elif self.counter == 5:
             self.api.sendMessage(id,"Sure. What medication(s) are you taking?")
-        elif self.counter == 7:
+        elif self.counter == 6:
             self.api.sendMessage(id,"What days of the week do you need to take insulin?")
-        elif self.counter == 8:
+        elif self.counter == 7:
             self.api.sendMessage(id,"What time of day would you like a reminder text?")
-        elif self.counter == 9:
+        elif self.counter == 8:
             self.api.sendMessage(id,"Ok, your next reminder is set for today at 7:00pm. Would you like help with anything else?")
-        elif self.counter == 10:
+        elif self.counter == 9:
             self.api.sendMessage(id,"Hello, what would you like help with?")
-        elif self.counter == 12:
+        elif self.counter == 10:
             self.api.sendMessage(id,"Of course. What is your postal code?")
-        elif self.counter == 13:
+        elif self.counter == 11:
             self.api.sendMessage(id,"Here are the nearest healthcare centres and their availability: St. Michaels Hospital: 30 mins wait time The Hospital for Sick Children: 15 mins wait time The Rehab and Wellbeing Centre at Mount Sinai Hospital: 25 mins wait time Would you like help with anything else?")
-        elif self.counter == 15:
+        elif self.counter == 12:
             self.counter == 0
         else:
             self.counter += 1 #wait for user to send another message.
