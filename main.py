@@ -41,13 +41,13 @@ class Main():
                 #if chat[1]==State.READY:
                     #self.api.sendMessage(id,self.api.writePromptString())
                     #mainControl()
-'''if '1' in message['message']:
-                    chat[1]=State.LOCA
-                elif '2' in message['message']:
-                    chat[1]=State.SYMP
-                    #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
-                elif '3' in message['message']:
-                    chat[1]=State.ALRT'''
+#'''if '1' in message['message']:
+#                    chat[1]=State.LOCA
+#                elif '2' in message['message']:
+#                    chat[1]=State.SYMP
+#                    #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
+#                elif '3' in message['message']:
+#                    chat[1]=State.ALRT'''
 
     def incrementCounter(self):
         self.counter+=1
