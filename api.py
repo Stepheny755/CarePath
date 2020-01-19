@@ -44,20 +44,20 @@ class API():
         return chatList
 
     def findChatByMemberID(self,receiverID):
-        for chat in a.parseChats():
+        for chat in self.parseChats():
             if(chat['type']=='single'):
                 if(chat['members'][0]['id']==receiver or chat['members'][1]['id']==receiver):
                     return chat['id']
 
     def findChatByMemberName(self,receiverName):
-        for chat in a.parseChats():
+        for chat in self.parseChats():
             if(chat['type']=='single'):
                 if(chat['members'][0]['firstname']==receiverName or chat['members'][1]['firstname']==receiverName):
                     return chat['id']
         return None
 
     def findChatByID(self,chatID):
-        for chat in a.parseChats():
+        for chat in self.parseChats():
             if(chat['id']==chatID):
                 return chat['id']
 
