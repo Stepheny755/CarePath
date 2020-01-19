@@ -1,12 +1,8 @@
 import json,requests
-from flask import Flask,request
 
-app = Flask(__name__)
-
-@app.route('/',methods=['POST'])
-def webhook():
+@app.route('/postmethod',methods=['POST'])
+def post_json():
     data=request.form
-
     print(data)
     return data
 
