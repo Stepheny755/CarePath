@@ -32,21 +32,24 @@ class Main():
     def readAllMessages(self):
         for chat in self.data:
             id=chat[0]
+            print(self.api.parseChats())
             if(id==self.api.findChatByMemberName("Stephen")):
-                self.api.sendMessage(id,self.api.writePromptString())
-            for message in self.api.readMessage(id):
-                print(message['message'])
-                if '1' in message['message']:
-                    pass
-                elif '2' in message['message']:
-                    chat[1]=State.SYMP
-                    self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
-                elif '3' in message['message']:
-                    pass
+                #self.api.sendMessage(id,self.api.writePromptString())
+                for message in self.api.readMessage(id):
+                    print(message)
+                    if '1' in message['message']:
+                        pass
+                    elif '2' in message['message']:
+                        chat[1]=State.SYMP
+                        #self.api.sendMessage(chat[0],"Sure, I can help with that. What symptoms do you have?")
+
+                    elif '3' in message['message']:
+                        pass
+            break
 
 b = Main()
 
-@app.route('/postmethod',methods=['POST'])
+@app.route('/',methods=['POST'])
 def post_json():
     data=request.form
     b.refresh()
