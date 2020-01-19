@@ -1,15 +1,5 @@
-import json,requests
-from flask import Flask,request
 
-app = Flask('main')
-
-@app.route('/')
-def main():
-    return 'hello world'
-
-@app.route('/getmethod')
-def post_json():
-    temp = {'id':123456789,'name':'CarePath','value':'test'}
-    return json.dumps(temp)
-
-Flask.run(app,host="167.99.186.154")
+from api import API
+from waitTimes import wsWaitTimes
+from transport import Transport
+from map import Map

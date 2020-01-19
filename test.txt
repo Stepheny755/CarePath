@@ -1,0 +1,16 @@
+cold,nausea/cough/sneezing/fever/headache
+diarrhea,fever/nausea/bloating/cramps
+heartburn,chestpain/acid reflux/stress 
+sleep apnea,headache/fatigue/dizziness/sorethroat
+high blood pressure,headache/fatigue/chestpain/blood in urine/irregular heartbeat
+diabetes,fatigue/hunger/dry mouth/itchy skin/blurred vision/nausea/vomiting
+chicken pox,itchy skin/red spots/fever
+stroke,numbness/confusion/slur/dizziness/blurred vision
+heart attack,tightness/pain/nausea/indigestion/fatigue/cold sweat
+concussion,headache/confusion/dizziness/nausea/vomiting/ringing in ears
+arthritis,pain/swelling/stiffness/fever
+blood clot,redness/swelling/pain/leg cramps
+dementia,memory problems/confusion/personality/reduced concentrations
+ear infection,nausea/vomiting/dizziness/spinning sensation/fullness in ear/ringing in ear
+heat stroke,headache/dizziness/lack of sweat/dry skin/hot skin/red skin/nausea/vomiting
+frostbite,cold skin/numbness/red skin/white skin/hard skin
