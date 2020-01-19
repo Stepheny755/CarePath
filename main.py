@@ -35,7 +35,7 @@ class Main():
     def readAllMessages(self):
         for chat in self.data:
             id=chat[0]
-            mainControl()
+            self.mainControl()
             #for message in self.api.readMessage(id):
                 #print(message['sender']['id']+": "+message['message'])
                 #if chat[1]==State.READY:
