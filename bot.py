@@ -9,14 +9,17 @@ class State(Enum):
 
 class Bot():
 
+
+
     def __init__(self):
         self.api = API()
-        for i in self.api.parseChats():
-            print(i)
-            print()
-        #print(self.api.parseChats())
-        self.state = State.READY
-
+        self.data = []
+        for chat in self.api.parseChats():
+            temp = []
+            temp.append(chat['id'])
+            temp.append(State.READY)
+            self.data.append(temp)
+        print(self.data)
 
 
 
