@@ -7,7 +7,8 @@ class API():
     cid=''
     scope=''
     authorization=''
-    username='SelenaLiu'
+    basicAuthorization=''
+    username='moosemd'
     password='asdf1234$'
 
     oauthuri='https://api-prod.hypercare.com/oauth/token'
@@ -17,12 +18,14 @@ class API():
         self.readClientIDSecret()
         self.getAccessToken()
         self.authorization="Bearer "+self.accessToken
+        self.basicAuthorization="Basic"+self.basicAuth
 
     def readClientIDSecret(self):
         f = open("keys/hypercare.txt","r+")
         self.cid=f.readline()
         self.cse=f.readline()
         self.scope=f.readline().strip()
+        self.basicAuth=f.readline().strip()
 
     def getAccessToken(self):
         payload={'grant_type':'password','username':self.username,'password':self.password}
@@ -51,18 +54,49 @@ class API():
             if(chat['type']=='single'):
                 if(chat['members'][0]['firstname']==receiverName or chat['members'][1]['firstname']==receiverName):
                     return chat['id']
+        return None
 
-    def findChatByName():
+    def findChatByID(self,chatID):
+        for chat in a.parseChats():
+            if(chat['id']==chatID):
+                return chat['id']
 
-    def readMessage(self,chatId):
-        payload = "{\"query\":\"query fetchMessages ($chatId: ID!, $continuationId: Int, $limit: Int) {\\r\\n    chat(chatId: $chatId) {\\r\\n        messages(continuationId: $continuationId, limit: $limit) {\\r\\n            messages {\\r\\n                ...messageFields\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n}\\r\\nfragment messageFields on Message {\\r\\n    id\\r\\n    priority\\r\\n    message\\r\\n    image\\r\\n    type\\r\\n    attachment {\\r\\n        ...AttachmentFragment\\r\\n    }\\r\\n    dateCreated\\r\\n    sender {\\r\\n        ...publicUserFields\\r\\n    }\\r\\n    deliveredTo {\\r\\n        ...deliveryReceiptFields\\r\\n    }\\r\\n    readBy {\\r\\n        ...readReceiptFields\\r\\n    }\\r\\n    data {\\r\\n        __typename ... on ConsultMessageData {\\r\\n            mrn\\r\\n            firstname\\r\\n            lastname\\r\\n            details\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment readReceiptFields on ReadReceipt {\\r\\n    messageId\\r\\n    user {\\r\\n        ...publicUserFields\\r\\n    }\\r\\n    timestamp\\r\\n}\\r\\n\\r\\nfragment deliveryReceiptFields on DeliveryReceipt {\\r\\n    messageId\\r\\n    user {\\r\\n        ...publicUserFields\\r\\n    }\\r\\n    timestamp\\r\\n}\\r\\n\\r\\nfragment publicUserFields on PublicUser {\\r\\n    id\\r\\n    firstname\\r\\n    lastname\\r\\n    username\\r\\n    email\\r\\n    phonenumber\\r\\n    role\\r\\n    profilePic {\\r\\n        url\\r\\n    }\\r\\n    workStatus\\r\\n    statusDescription\\r\\n    workStatusProxy {\\r\\n        ...publicUserStatusFields\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment publicUserStatusFields on PublicUser {\\r\\n    id\\r\\n    firstname\\r\\n    lastname\\r\\n    username\\r\\n    phonenumber\\r\\n    role\\r\\n    profilePic {\\r\\n        url\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment AttachmentFragment on Attachment {\\r\\n    id\\r\\n    url\\r\\n    mimeType\\r\\n    fileName\\r\\n}\",\"variables\":{\"chatId\":\""+chatId+"\"}}"
+    def findOrganizationMembers(self):
+        contacts=[]
+        payload = "{\"query\":\"query fetchColleagues {\\r\\n    colleagues {\\r\\n        ...GeneralUserFragment\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment GeneralUserFragment on GeneralUser {\\r\\n    id\\r\\n    username\\r\\n    firstname\\r\\n    lastname\\r\\n    role\\r\\n    profilePic {\\r\\n        url\\r\\n    }\\r\\n    status\\r\\n    addresses {\\r\\n        address\\r\\n        type\\r\\n        access\\r\\n        ordinal\\r\\n    }\\r\\n}\",\"variables\":{}}"
+        headers = {'hypercare-scope': self.scope,'Authorization': self.authorization,'Content-Type': 'application/json'}
+        jsondata = requests.post(self.chaturi,headers=headers,data=payload)
+        data = json.loads(jsondata.text)['data']['colleagues']
+        for user in data:
+            if user['id'] not in contacts:
+                contacts.append(user['id'])
+        return contacts
+
+    def findNonContactedMembers(self):
+        contacts = []
+        noncontacts = []
+        for user in self.parseChats():
+            if(user['type']=='single'):
+                data = user['members']
+                if data[0]['id'] not in contacts:
+                    contacts.append(data[0]['id'])
+                if data[1]['id'] not in contacts:
+                    contacts.append(data[1]['id'])
+        colleagues = self.findOrganizationMembers()
+        for member in colleagues:
+            if member not in contacts:
+                noncontacts.append(member)
+        return noncontacts
+
+    def readMessage(self,chatID):
+        payload = "{\"query\":\"query fetchMessages ($chatId: ID!, $continuationId: Int, $limit: Int) {\\r\\n    chat(chatId: $chatId) {\\r\\n        messages(continuationId: $continuationId, limit: $limit) {\\r\\n            messages {\\r\\n                ...messageFields\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n}\\r\\nfragment messageFields on Message {\\r\\n    id\\r\\n    priority\\r\\n    message\\r\\n    image\\r\\n    type\\r\\n    attachment {\\r\\n        ...AttachmentFragment\\r\\n    }\\r\\n    dateCreated\\r\\n    sender {\\r\\n        ...publicUserFields\\r\\n    }\\r\\n    deliveredTo {\\r\\n        ...deliveryReceiptFields\\r\\n    }\\r\\n    readBy {\\r\\n        ...readReceiptFields\\r\\n    }\\r\\n    data {\\r\\n        __typename ... on ConsultMessageData {\\r\\n            mrn\\r\\n            firstname\\r\\n            lastname\\r\\n            details\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment readReceiptFields on ReadReceipt {\\r\\n    messageId\\r\\n    user {\\r\\n        ...publicUserFields\\r\\n    }\\r\\n    timestamp\\r\\n}\\r\\n\\r\\nfragment deliveryReceiptFields on DeliveryReceipt {\\r\\n    messageId\\r\\n    user {\\r\\n        ...publicUserFields\\r\\n    }\\r\\n    timestamp\\r\\n}\\r\\n\\r\\nfragment publicUserFields on PublicUser {\\r\\n    id\\r\\n    firstname\\r\\n    lastname\\r\\n    username\\r\\n    email\\r\\n    phonenumber\\r\\n    role\\r\\n    profilePic {\\r\\n        url\\r\\n    }\\r\\n    workStatus\\r\\n    statusDescription\\r\\n    workStatusProxy {\\r\\n        ...publicUserStatusFields\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment publicUserStatusFields on PublicUser {\\r\\n    id\\r\\n    firstname\\r\\n    lastname\\r\\n    username\\r\\n    phonenumber\\r\\n    role\\r\\n    profilePic {\\r\\n        url\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment AttachmentFragment on Attachment {\\r\\n    id\\r\\n    url\\r\\n    mimeType\\r\\n    fileName\\r\\n}\",\"variables\":{\"chatId\":\""+chatID+"\"}}"
         headers = {'hypercare-scope': self.scope,'Authorization': self.authorization,'Content-Type': 'application/json'}
         jsondata = requests.post(self.chaturi,headers=headers,data=payload)
         messageList = json.loads(jsondata.text)['data']['chat']['messages']['messages']
         return messageList
 
-    def sendMessage(self,chatId,inputMessage):
-        payload = "{\"query\":\"mutation sendMessage($chatId: ID!, $message: String!, $fileId: Int, $type: MessageType, $priority: Boolean) {\\r\\n    chat(chatId: $chatId) {\\r\\n        sendMessage(message: $message, type: $type, fileId: $fileId, priority: $priority) {\\r\\n            id\\r\\n            image\\r\\n            attachment {\\r\\n                ...AttachmentFragment\\r\\n            }\\r\\n            message\\r\\n            type\\r\\n            sender {\\r\\n                id\\r\\n                username\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment AttachmentFragment on Attachment {\\r\\n    id\\r\\n    url\\r\\n    mimeType\\r\\n    fileName\\r\\n}\",\"variables\":{\"chatId\":\""+chatId+"\",\"message\":\""+inputMessage+"\",\"type\":\"text\",\"priority\":false}}"
+    def sendMessage(self,chatID,inputMessage):
+        payload = "{\"query\":\"mutation sendMessage($chatId: ID!, $message: String!, $fileId: Int, $type: MessageType, $priority: Boolean) {\\r\\n    chat(chatId: $chatId) {\\r\\n        sendMessage(message: $message, type: $type, fileId: $fileId, priority: $priority) {\\r\\n            id\\r\\n            image\\r\\n            attachment {\\r\\n                ...AttachmentFragment\\r\\n            }\\r\\n            message\\r\\n            type\\r\\n            sender {\\r\\n                id\\r\\n                username\\r\\n            }\\r\\n        }\\r\\n    }\\r\\n}\\r\\n\\r\\nfragment AttachmentFragment on Attachment {\\r\\n    id\\r\\n    url\\r\\n    mimeType\\r\\n    fileName\\r\\n}\",\"variables\":{\"chatId\":\""+chatID+"\",\"message\":\""+inputMessage+"\",\"type\":\"text\",\"priority\":false}}"
         headers={'hypercare-scope':self.scope,'Authorization':self.authorization,'Content-Type': 'application/json'}
         jsondata = requests.post(self.chaturi,headers=headers,data=payload)
         return jsondata.text
@@ -73,6 +107,8 @@ class API():
 
 if(__name__=="__main__"):
     a = API()
+    print(a.findNonContactedMembers())
     #print(a.parseChats()[0])
-    a.readMessage(a.findChatByMemberName("Stephen"))
+    #print()
+    #print(a.readMessage(a.findChatByMemberName("Stephen")))
     #print(a.getUserData())

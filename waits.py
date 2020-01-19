@@ -1,7 +1,7 @@
 import requests,json,csv,os
 from xml.dom import minidom
 
-class waitTimes():
+class Waits():
 
     uri = 'http://hqontario.ca/webservices/wsWaitTimes.asmx/getTableDataAllHospitals'
 
@@ -37,7 +37,7 @@ class waitTimes():
             print(i)
 
 if(__name__=="__main__"):
-    w=waitTimes()
+    w=Waits()
     d=w.getHospitalList()
     w.parseHospitalList(d)
     w.getHospitalWaitTime("Sensenbrenner Hospital")
