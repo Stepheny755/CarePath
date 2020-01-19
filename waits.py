@@ -11,7 +11,7 @@ class Waits():
     def readWaitTimes(self):
         readList = []
         filename="waittimes.csv"
-        path="resources"
+        path="assets"
         with open(os.path.join(path,filename).strip(),'r') as r:
             readList = list(csv.reader(r,delimiter=','))
         self.waitTimeList = readList
