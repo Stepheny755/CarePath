@@ -50,7 +50,9 @@ class Main():
 #                elif '3' in message['message']:
 #                    chat[1]=State.ALRT'''
 
+
     def incrementCounter(self):
+        print("hit")
         self.mainControl()
         self.counter+=1
 
