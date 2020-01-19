@@ -3,10 +3,11 @@ from flask import Flask,request
 
 app = Flask(__name__)
 
-@app.route('/postmethod',methods=['POST'])
-def post_json():
+@app.route('/',methods=['POST'])
+def webhook():
     data=request.form
-    print(data.text)
+
+    print(data)
     return data
 
 Flask.run(app,host="167.99.186.154")
