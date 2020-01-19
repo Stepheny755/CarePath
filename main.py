@@ -59,9 +59,9 @@ class Main():
             self.counter+=1
 
     def mainControl(self):
-        id=self.api.findChatByMemberName("Stephen")
+        id=self.api.findChatByMemberName("Selena")
+        print(self.counter)
         if self.counter == 0:
-            print(self.counter)
             self.api.sendMessage(id,"Hello, I am Moose M.D, a friendly healthcare chatbot. Would you like me to (1) Search nearby healthcare services, (2) match your symptoms, (3) help regulate your medication?")
         elif self.counter == 1:
             self.api.sendMessage(id,"Sure, I can help you with that. What are your symptoms?")
