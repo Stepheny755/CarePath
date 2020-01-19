@@ -35,7 +35,7 @@ class Main():
             id=chat[0]
             for message in self.api.readMessage(id):
                 print(message['sender']['id']+": "+message['message'])
-                if chat[1]=State.READY:
+                if chat[1]==State.READY:
                     self.api.sendMessage(id,self.api.writePromptString())
                 if '1' in message['message']:
                     chat[1]=State.LOCA
