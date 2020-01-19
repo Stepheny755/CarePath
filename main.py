@@ -27,10 +27,6 @@ class Main():
         print(self.data)
         self.readAllMessages()
 
-    def refresh(self):
-        print("Refreshing")
-        self.readAllMessages()
-
     def readAllMessages(self):
         for chat in self.data:
             id=chat[0]
@@ -46,7 +42,7 @@ class Main():
                 elif '3' in message['message']:
                     chat[1]=State.ALRT
 
-    #def parseSymp():
+    def parseSymp():
 
 
     #def parseLoca():
@@ -59,7 +55,7 @@ b = Main()
 @app.route('/',methods=['POST'])
 def post_json():
     data=request.form
-    b.refresh()
+    b.readAllMessages()
     print(data)
     return data
 
